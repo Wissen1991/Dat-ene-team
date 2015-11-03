@@ -3,6 +3,38 @@ import java.util.Scanner;
 
 public class test
 {
+	
+	private static boolean nogEenKeer()
+	{
+		System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
+        Scanner scanner = new Scanner(System.in);
+        
+        while(scanner.hasNextLine())
+        {
+           String token = scanner.nextLine().trim();
+
+           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
+           {
+               System.out.println("Geweldig!");
+               return true;
+           }
+           else if (token.equalsIgnoreCase("n")||token.equalsIgnoreCase("nee"))
+           {
+               System.out.println("Dat is jammer!");
+               return false;
+           }
+           else
+           {
+               System.out.println("Oops, geen valide input!");
+               System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
+               continue;
+           }
+           
+         }		
+        return false;
+	}
+	
+	
     public static void main(String[] args)
     {
 
@@ -14,7 +46,6 @@ public class test
         double taille = 0.0;
         double tailleOnderwaarde = 68.0;
         double tailleBovenwaarde = 80.0;
-        String token = "";
 
         while (true) {
         	
@@ -57,29 +88,14 @@ public class test
 	        	System.out.println("Obesitas: 30 of hoger");
 	        	System.out.println("Raadpleeg professionele hulp of ga op het strand liggen, dan word je vanzelf weer de zee ingetrokken!");
 	        }
-	        
-	    	System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
-	        Scanner scanner = new Scanner(System.in);    
-	        while(scanner.hasNextLine())
-	        {
-	           token = scanner.nextLine().trim();
-	
-	           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
-	           {
-	               System.out.println("Start in dat geval de applicatie opnieuw op!");
-	               continue;
-	           }
-	           else if (token.equalsIgnoreCase("n")||token.equalsIgnoreCase("nee"))
-	           {
-	               System.out.println("Dat is jammer!");
-	               System.exit(0);
-	           }
-	           else
-	           {
-	               System.out.println("Oops, geen valide input!");
-	               break;
-	           }
-	         }
+
+	        if (nogEenKeer()){
+	        	continue;
+	        }
+	        else {
+	        	System.exit(0);
+	        }
+
         }
     }
 }
