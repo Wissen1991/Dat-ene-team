@@ -103,7 +103,7 @@ public class test
             }   
 	        
 	        System.out.println("");
-	        System.out.println("Disclaimer: deze uitkomsten kunnen geen rechten aan ontleend worden.");
+	        System.out.println("Disclaimer: Aan deze uitkomsten kunnen geen rechten ontleend worden.");
 	        System.out.println("");
 	        
 	        if (nogEenKeer()){
