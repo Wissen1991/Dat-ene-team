@@ -1,6 +1,10 @@
 package test;
 import java.util.Scanner;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 public class test
 {
 	
@@ -50,9 +54,19 @@ public class test
         while (true) {
 
 	        System.out.print("Vul je geslacht in (m/v): ");
+	        String f;
+			String testGeslacht = f;
 	        Scanner scanner = new Scanner(System.in);
 	        String geslacht = scanner.nextLine().trim();
-	        	        
+	        
+	        //test
+	        public void testGeslacht() {
+	        	System.out.println("testGeslacht:" + geslacht + " = " + testGeslacht);
+	        	assertEquals(testGeslacht, geslacht);
+	        }
+	    
+	        
+	        
 	        System.out.print("Vul je gewicht in Kg: ");
 	        gewicht = input.nextInt();
 	
@@ -116,3 +130,5 @@ public class test
         }
     }
 }
+
+
