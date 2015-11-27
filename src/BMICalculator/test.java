@@ -1,9 +1,6 @@
-package test;
+package BMICalculator;
+
 import java.util.Scanner;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
 
 public class test
 {
@@ -11,39 +8,40 @@ public class test
 	private static boolean nogEenKeer()
 	{
 		System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
-        Scanner scanner = new Scanner(System.in);
+        try(Scanner scanner = new Scanner(System.in)){
         
-        while(scanner.hasNextLine())
-        {
-           String token = scanner.nextLine().trim();
-
-           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
-           {
-               System.out.println("Geweldig!");
-               return true;
-           }
-           else if (token.equalsIgnoreCase("n")||token.equalsIgnoreCase("nee"))
-           {
-               System.out.println("Dat is jammer!");
-               return false;
-           }
-           else
-           {
-               System.out.println("Oops, geen valide input!");
-               System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
-               continue;
-           }
-           
-         }		
-        return false;
-	}
+	        while(scanner.hasNextLine())
+	        {
+	           String token = scanner.nextLine().trim();
 	
+	           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
+	           {
+	               System.out.println("Geweldig!");
+	               return true;
+	           }
+	           else if (token.equalsIgnoreCase("n")||token.equalsIgnoreCase("nee"))
+	           {
+	               System.out.println("Dat is jammer!");
+	               return false;
+	           }
+	           else
+	           {
+	               System.out.println("Oops, geen valide input!");
+	               System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
+	               continue;
+	           }
+	           
+	         }		
+	        return false;
+        }
+	}
 	
     public static void main(String[] args)
     {
 
-        Scanner input = new Scanner(System.in);
-
+        @SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+        
         double gewicht = 0.0;
         double lengte = 0.0;
         double bmi = 0.0;
@@ -54,19 +52,13 @@ public class test
         while (true) {
 
 	        System.out.print("Vul je geslacht in (m/v): ");
-	        String f;
-			String testGeslacht = f;
-	        Scanner scanner = new Scanner(System.in);
+	        @SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
 	        String geslacht = scanner.nextLine().trim();
 	        
-	        //test
-	        public void testGeslacht() {
-	        	System.out.println("testGeslacht:" + geslacht + " = " + testGeslacht);
-	        	assertEquals(testGeslacht, geslacht);
-	        }
-	    
-	        
-	        
+	        //Indien f ingevoerd danvervangen voor v
+	        geslacht = StringHelper.replaceFwithV(geslacht);
+	              
 	        System.out.print("Vul je gewicht in Kg: ");
 	        gewicht = input.nextInt();
 	
@@ -126,7 +118,6 @@ public class test
 	        else {
 	        	System.exit(0);
 	        }
-
         }
     }
 }
