@@ -4,15 +4,14 @@ import java.util.Scanner;
 
 public class test
 {
-	
+	private static Scanner scanner = new Scanner(System.in);
 	private static boolean nogEenKeer()
 	{
 		System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
-        try(Scanner scanner = new Scanner(System.in)){
         
 	        while(scanner.hasNextLine())
 	        {
-	           String token = scanner.nextLine().trim();
+	           String token = scanner.next("ja|nee|j|n").trim();
 	
 	           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
 	           {
@@ -33,15 +32,11 @@ public class test
 	           
 	         }		
 	        return false;
-        }
 	}
 	
     public static void main(String[] args)
     {
-
-        @SuppressWarnings("resource")
-		Scanner input = new Scanner(System.in);
-        
+     
         double gewicht = 0.0;
         double lengte = 0.0;
         double bmi = 0.0;
@@ -52,23 +47,21 @@ public class test
         while (true) {
 
 	        System.out.print("Vul je geslacht in (m/v): ");
-	        @SuppressWarnings("resource")
-			Scanner scanner = new Scanner(System.in);
 	        String geslacht = scanner.nextLine().trim();
 	        
-	        //Indien f ingevoerd danvervangen voor v
+	        //Indien f ingevoerd dan vervangen voor v
 	        geslacht = StringHelper.replaceFwithV(geslacht);
 	              
 	        System.out.print("Vul je gewicht in Kg: ");
-	        gewicht = input.nextInt();
+	        gewicht = scanner.nextInt();
 	
 	        System.out.print("Vul je lengte in cm: ");
-	        lengte = input.nextInt();
+	        lengte = scanner.nextInt();
 	     
 	        bmi = (gewicht/((lengte/100)*(lengte/100)));
        
             System.out.print("Vul de omvang van je taille in: ");
-            taille = input.nextInt();
+            taille = scanner.nextInt();
             
             System.out.println("");
             System.out.println("Je hebt opgegeven:");
