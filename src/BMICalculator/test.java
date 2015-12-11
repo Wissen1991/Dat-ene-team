@@ -1,5 +1,6 @@
 package BMICalculator;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class test
@@ -11,33 +12,35 @@ public class test
         
 	        while(scanner.hasNextLine())
 	        {
-	           String token = scanner.next("ja|nee|j|n").trim();
-	
-	           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
-	           {
-	               System.out.println("Geweldig!");
-	               return true;
-	           }
-	           else if (token.equalsIgnoreCase("n")||token.equalsIgnoreCase("nee"))
-	           {
-	               System.out.println("Dat is jammer!");
-	               return false;
-	           }
-	           else
-	           {
-	               System.out.println("Oops, geen valide input!");
-	               System.out.println("Wil je nog een berekening uitvoeren? ('ja' voor nog een keer; 'nee' om te stoppen)");
-	               continue;
-	           }
-	           
-	         }		
+	        	try
+	        	{
+	        		scanner.nextLine();
+	        		String token = scanner.next("ja|nee|j|n").trim();
+		
+		           if(token.equalsIgnoreCase("j")||token.equalsIgnoreCase("ja")) 
+		           {
+		               System.out.println("Geweldig!");
+		               return true;
+		           }
+		           else if (token.equalsIgnoreCase("n")||token.equalsIgnoreCase("nee"))
+		           {
+		               System.out.println("Dat is jammer!");
+		               return false;
+		           }
+	        	}
+	        	catch(InputMismatchException oops)
+        		{
+	               System.out.println("Oops, geen valide input (ja of nee)!");
+        		}
+	         }
 	        return false;
 	}
 	
     public static void main(String[] args)
     {
      
-        double gewicht = 0.0;
+    	String geslacht = null;
+    	double gewicht = 0.0;
         double lengte = 0.0;
         double bmi = 0.0;
         double taille = 0.0;
@@ -46,12 +49,26 @@ public class test
 
         while (true) {
 
-	        System.out.print("Vul je geslacht in (m/v): ");
-	        String geslacht = scanner.nextLine().trim();
+        	System.out.print("Vul je geslacht in (m/v): ");
+        	
+        	while(true)
+	        {
+	        	try
+	        	{
+	        		geslacht = scanner.next("m|v|M|V|f|F").trim();
+			        
+			        //Indien f ingevoerd dan vervangen voor v
+			        geslacht = StringHelper.replaceFwithV(geslacht);
+			        break;
+	        	}
+		        catch(InputMismatchException oops)
+	    		{
+	               System.out.println("Oops, geen valide input (m of v)!");
+	               scanner.nextLine();
+	    		}
+	        }
 	        
-	        //Indien f ingevoerd dan vervangen voor v
-	        geslacht = StringHelper.replaceFwithV(geslacht);
-	              
+	        
 	        System.out.print("Vul je gewicht in Kg: ");
 	        gewicht = scanner.nextInt();
 	
